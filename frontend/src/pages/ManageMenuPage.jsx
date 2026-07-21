@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Edit2, Trash2, Check, X, Search, Utensils } from 'lucide-react';
+import { ArrowLeft, Edit2, Trash2, Check, X, Search } from 'lucide-react';
 
 const API_URL = 'https://hotel-bill-backend.onrender.com/api/items';
 
@@ -99,7 +99,7 @@ export default function ManageMenuPage() {
 
         {/* Search Bar */}
         <div className="relative">
-          <Search className="w-4 h-4 absolute left-3.5 top-3 text-slate-500" />
+          <Search className="w-4 h-4 absolute left-3.5 top-3.5 sm:top-3 text-slate-500" />
           <input
             type="text"
             placeholder="Search dish name..."
@@ -120,35 +120,50 @@ export default function ManageMenuPage() {
               {filteredItems.map((item) => (
                 <div
                   key={item._id}
-                  className="p-4 flex items-center justify-between hover:bg-slate-950/40 transition"
+                  className="p-4 flex items-center justify-between hover:bg-slate-950/40 transition gap-3"
                 >
                   {editingId === item._id ? (
-                    /* Inline Editing Mode */
-                    <div className="flex items-center gap-3 w-full">
+                    /* Inline Editing Mode - Mobile Responsive */
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full">
+                      {/* Dish Name Input */}
                       <input
                         type="text"
                         value={editName}
                         onChange={(e) => setEditName(e.target.value)}
-                        className="bg-slate-950 text-slate-100 px-3 py-1.5 rounded border border-amber-500/50 text-sm flex-1"
+                        placeholder="Dish Name"
+                        className="bg-slate-950 text-slate-100 px-3 py-2 sm:py-1.5 rounded border border-amber-500/50 text-sm flex-1 focus:outline-none focus:border-amber-400"
                       />
-                      <input
-                        type="number"
-                        value={editPrice}
-                        onChange={(e) => setEditPrice(e.target.value)}
-                        className="bg-slate-950 text-slate-100 px-3 py-1.5 rounded border border-amber-500/50 text-sm w-24"
-                      />
-                      <button
-                        onClick={() => handleUpdate(item._id)}
-                        className="p-2 bg-emerald-500/20 text-emerald-400 rounded-lg hover:bg-emerald-500/30"
-                      >
-                        <Check className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={cancelEdit}
-                        className="p-2 bg-slate-800 text-slate-400 rounded-lg hover:bg-slate-700"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
+
+                      {/* Price Input & Action Buttons Row */}
+                      <div className="flex items-center gap-2">
+                        <div className="relative flex-1 sm:w-28">
+                          <span className="absolute left-2.5 top-2 sm:top-1.5 text-xs text-slate-400 font-bold">₹</span>
+                          <input
+                            type="number"
+                            value={editPrice}
+                            onChange={(e) => setEditPrice(e.target.value)}
+                            placeholder="Price"
+                            className="bg-slate-950 text-slate-100 pl-6 pr-3 py-2 sm:py-1.5 rounded border border-amber-500/50 text-sm w-full focus:outline-none focus:border-amber-400 font-medium"
+                          />
+                        </div>
+
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            onClick={() => handleUpdate(item._id)}
+                            className="p-2 sm:p-1.5 bg-emerald-500/20 text-emerald-400 rounded-lg hover:bg-emerald-500/30 transition"
+                            title="Save"
+                          >
+                            <Check className="w-4 h-4" />
+                          </button>
+                          <button
+                            onClick={cancelEdit}
+                            className="p-2 sm:p-1.5 bg-slate-800 text-slate-400 rounded-lg hover:bg-slate-700 transition"
+                            title="Cancel"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     /* Normal Display Mode */
@@ -158,7 +173,7 @@ export default function ManageMenuPage() {
                         <span className="text-xs text-amber-400 font-bold">₹{item.price}</span>
                       </div>
 
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 shrink-0">
                         <button
                           onClick={() => startEdit(item)}
                           className="px-3 py-1.5 bg-slate-800 hover:bg-amber-500/10 text-amber-400 rounded-lg text-xs font-medium flex items-center gap-1 transition"
