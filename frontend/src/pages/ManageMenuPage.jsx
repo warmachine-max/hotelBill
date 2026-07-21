@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Edit2, Trash2, Check, X, Search, Utensils } from 'lucide-react';
 
-const API_URL = 'http://localhost:5000/api/items';
+const API_URL = 'https://hotel-bill-backend.onrender.com/api/items';
 
 export default function ManageMenuPage() {
   const navigate = useNavigate();

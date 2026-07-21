@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Printer, ArrowLeft, CheckCircle, Clock, Utensils, AlertTriangle } from 'lucide-react';
 
-const API_KOT_URL = 'http://localhost:5000/api/kot';
+// Replace localhost with your live backend URL:
+const API_KOT_URL = 'https://hotel-bill-backend.onrender.com/api/kot';
 const GST_PERCENTAGE = 5; // Set your tax percentage here (e.g., 5 for 5% GST)
 
 export default function BillPage() {

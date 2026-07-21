@@ -3,8 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Search, Home, FileText, Plus, Minus, Trash2 } from 'lucide-react';
 
-const API_ITEMS_URL = 'http://localhost:5000/api/items';
-const API_KOT_URL = 'http://localhost:5000/api/kot';
+const API_ITEMS_URL = 'https://hotel-bill-backend.onrender.com/api/items';
+const API_KOT_URL = 'https://hotel-bill-backend.onrender.com/api/kot';
 
 // LocalStorage Keys for Draft Auto-Save
 const DRAFT_KOT_KEY = 'draft_kot_items';
